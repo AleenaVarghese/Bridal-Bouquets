@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+<!-- <form method ="POST"> -->
+       
+<div class="row">
+        {% for order in order_list %}
+    
+<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+    <!-- Block2 -->
+    <div class="block2">   
+       
+        <center>       
+        <div class="block2-txt p-t-20">              
+                
+                <b>User: {{ order.user }}</b><br>
+                <b>Products:{{ order.product }}</b><br/>                  
+                <b>Ordering Date:{{ order.order_date }}</b><br/>            
+                <b>Delivery Date:{{ order.delivery_date }}</b><br/>               
+                <b>Name of product received Person:{{ order.delivery }}</b><br/>               
+        </div>        
+    </center>
+    </div>
+</div>
+<!-- </form> -->
+    {% endfor %}
+</div>
+{% endblock %}
+
+

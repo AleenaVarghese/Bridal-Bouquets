@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+<!-- <form method ="POST"> -->
+       
+<div class="row">
+        {% for order in order_list %}
+    
+<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+    <!-- Block2 -->
+    <div class="block2">   
+       
+        <center>       
+        <div class="block2-txt p-t-20">          
+                
+                
+                <b>User: {{ order.user }}</b><br>
+                <b>Receving Person:{{ order.delivery }}</b><br/>
+                <b>Receving Address:{{ order.delivery.address }}</b><br/>
+                <b>Products:{{ order.product }}</b><br/>                  
+                <b>Ordering Date:{{ order.order_date }}</b><br/>
+                <b>Total Amount Paid:{{ order.total_amount }}</b><br/>                  
+
+                <form type="submit" method="POST" action ="{% url 'productAdd:approve_delivery' %}">
+                    {% csrf_token %} 
+                <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name="order_id" value="{{ order.id }}">
+                    Approve Delivery
+                </button>                                    
+                </form>
+        </div>        
+    </center>
+    </div>
+</div>
+<!-- </form> -->
+    {% endfor %}
+</div>
+{% endblock %}
+
+
