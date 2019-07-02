@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+<!-- <form method ="POST"> -->
+        <h3 class="m-text5 t-center">User FeedBacks</h3><br/>
+    <center>
+       
+
+         <table border=1 style="align-items: center">
+                <tr>
+                    <th><center><b>Serial No</b></center></th>
+                    <th><center><b> User </b></center></th>
+                    <th><center><b>Title</b></center></th>
+                    <th><center><b>Message</b></center></th>
+                </tr>
+            {% for feedback in feedback_list %}
+                <tr>
+                    <td><center>{{ feedback.id }}</center></td>
+                    <td><center>{{ feedback.user }}</center></td>
+                    <td><center>{{ feedback.title }}</center></td>
+                    <td><center>{{ feedback.message }}</center></td>                 
+                    <td><center>{{ order.order_date }}</center></td>                    
+                </tr>
+            {% endfor %}
+        </table><br/>
+    </center>
+{% endblock %}
+
+

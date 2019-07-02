@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} 
+{% block content %}  
+
+<br/><br/>
+<div class="container">
+   
+    <form method = "POST" onsubmit="return confirm('Do you really want to submit the details? This will lead to automatic checkout of the order');">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <h3 class="m-text5 t-center">Delivery Details</h3>                           
+            {{ form|crispy }}                
+        </fieldset>
+        <div class="form-group">
+            <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit" >Submit</button>
+        </div>
+    </form>    
+    
+</div>
+<br/><br/>
+
+{% endblock %}
+{% crispy form %}

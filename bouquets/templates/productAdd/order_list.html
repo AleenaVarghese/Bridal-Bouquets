@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+<!-- <form method ="POST"> -->
+        <h3 class="m-text5 t-center">Latest Orders</h3><br/>
+        <center> 
+        <table border=1 style="align-items: center">
+                <tr>
+                    <th><center><b>User</b></center></th>
+                    <th><center><b>Receving Person</b></center></th>
+                    <th><center><b>Receving Address</b></center></th>
+                    <th><center><b>Products</b></center></th>
+                    <th><center><b>Ordering Date</b></center></th>
+                    <th><center><b>Total Amount Paid</b></center></th>
+                </tr>              
+    
+   
+       
+              
+                {% for order in order_list %}          
+            
+                <tr>
+                <td><center>{{ order.user }}</center></td>
+                <td><center>{{ order.delivery }}</center></td>
+                <td><center>{{ order.delivery.address }}</center></td>
+                <td><center>{{ order.product }}</center></td>                  
+                <td><center>{{ order.order_date }}</center></td>
+                <td><center>{{ order.total_amount }}</center></td>                  
+                <td>
+                <form type="submit" onsubmit="return confirm('Do you really want to approve the order?');" method="POST" action ="{% url 'productAdd:approve_delivery' %}">
+                    {% csrf_token %} 
+                <button type="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name="order_id" value="{{ order.id }}">
+                    Approve Delivery
+                </button>                                    
+                </form>
+                </td>
+                </tr>
+                {% endfor %}
+            </table><br/>
+    </center>
+    
+<!-- </form> -->
+    
+</div>
+{% endblock %}
+
+

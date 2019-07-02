@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+<!-- <form method ="POST"> -->
+        <h3 class="m-text5 t-center">Your Orders</h3><br/>
+
+        
+    
+       
+        <center>       
+                    
+            <table border=1> 
+                    <tr>
+                        <th><center><b>User</b></center></th>
+                        <th><center><b>Products</b></center></th>
+                        <th><center><b>Ordering Date</b></center></th>
+                        <th><center><b>Delivery Date</b></center></th>
+                        <th><center><b>Name of product received Person</b></center></th>
+                        <th><center><b>Amount Paid</b></center></th>
+                    </tr>
+                        {% for order in order_list %}
+                        <tr>
+                            <td><center>{{ order.user }}</center></td>
+                            <td><center>{{ order.product }}</center></td>
+                            <td><center>{{ order.order_date }}</center></td>
+                        {% if not order.delivery_date == None%}  
+                            <td><center>{{ order.delivery_date }}</center></td>
+                        {% else %} 
+                            <td><center>Not specified</center></td>
+                        {% endif %}                  
+                            <td><center>{{ order.delivery }}</center></td>
+                            <td><center>{{ order.total_amount }}</center></td>                                             
+                            <td><center>
+                        {% if order.delivery_date == None%}
+                            <form onsubmit="return confirm('Do you really want to cancel the order?');" type="submit" method="POST" action ="{% url 'cart:cancel_order'%}">
+                            {% csrf_token %}                     
+                                <button type="submit" onclick="fun();" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" name="order_id" value="{{ order.id }}">
+                                cancel Order
+                                </button>                                    
+                            </form>            
+                        {% endif %}
+                            </center></td>
+                        </tr>
+                        {% endfor %}
+            </table></br>
+
+                     
+               
+    </center>
+ 
+<!-- </form> -->
+   
+
+{% endblock %}
+
+
